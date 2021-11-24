@@ -70,4 +70,3 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         return Color.argb(alpha, red, green, blue)
     }
 }
-
