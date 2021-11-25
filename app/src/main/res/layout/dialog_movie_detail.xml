@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movieDetailDialogVM"
+            type="com.manhhung.movie.ui.dialogMovieDetail.MovieDetailDialogViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_view_corner_top">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imagePoster"
+            android:layout_width="100dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{movieDetailDialogVM.movieDetail.poster}"
+            app:shapeAppearanceOverlay="@style/image_corner"
+            tool:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/black"
+            android:maxLines="2"
+            android:text="@{movieDetailDialogVM.movieDetail.title}"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@id/buttonClose"
+            app:layout_constraintStart_toEndOf="@id/imagePoster"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/buttonClose"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="12dp"
+            android:background="@drawable/bs_close_icon_bg"
+            android:padding="4dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/icon"
+            android:maxLines="4"
+            android:text="@{movieDetailDialogVM.movieDetail.description}"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/textName"
+            app:layout_constraintTop_toBottomOf="@id/textName" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPlay"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imagePoster">
+
+            <LinearLayout
+                android:id="@+id/play_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_play"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="Phát"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="18dp"
+            android:background="@color/color_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardPlay" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttonDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewLine">
+
+            <ImageView
+                android:id="@+id/imageDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/medium"
+                android:text="Thông tin chi tiết"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageDetail"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/buttonGo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_chevron_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

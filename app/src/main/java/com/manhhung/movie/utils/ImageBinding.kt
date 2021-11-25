@@ -1,6 +1,7 @@
 package com.manhhung.movie.utils
 
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
