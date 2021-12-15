@@ -40,7 +40,7 @@
             android:maxLines="2"
             android:text="@{movieDetailDialogVM.movieDetail.title}"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@id/buttonClose"
             app:layout_constraintStart_toEndOf="@id/imagePoster"
             app:layout_constraintTop_toTopOf="parent" />
@@ -63,11 +63,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
-            android:fontFamily="@font/icon"
+            android:minHeight="94dp"
+            android:fontFamily="@font/regular"
             android:maxLines="4"
             android:text="@{movieDetailDialogVM.movieDetail.description}"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/textName"
             app:layout_constraintTop_toBottomOf="@id/textName" />
@@ -78,10 +79,10 @@
             android:layout_height="32dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="50dp"
+            app:layout_constraintBottom_toBottomOf="@id/viewLine"
             app:cardBackgroundColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imagePoster">
+            app:layout_constraintTop_toBottomOf="@id/textDescription">
 
             <LinearLayout
                 android:id="@+id/play_button"

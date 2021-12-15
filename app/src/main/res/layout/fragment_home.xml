@@ -14,15 +14,15 @@
         android:id="@+id/coordinatorHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:background="@color/black">
+        android:background="@color/black"
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
             android:background="@color/transparent"
+            android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:translationZ="0.1dp"
             app:elevation="0dp"
@@ -49,21 +49,23 @@
                     android:id="@+id/imageSearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp_8"
+                    android:layout_marginHorizontal="12dp"
+                    android:padding="8dp"
                     android:src="@drawable/ic_search"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/imageProfile"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageProfile"
-                    android:layout_width="@dimen/dp_24"
-                    android:layout_height="@dimen/dp_24"
+                    android:layout_width="@dimen/dp_32"
+                    android:layout_height="@dimen/dp_32"
                     android:layout_margin="@dimen/dp_8"
-                    android:src="@drawable/ic_launcher_foreground"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/image_corner"
+                    tools:src="@tools:sample/avatars" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -139,12 +141,12 @@
                     <ImageView
                         android:id="@+id/imagePopular"
                         android:layout_width="0dp"
-                        android:layout_height="450dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background"
+                        android:layout_height="550dp"
+                        android:scaleType="fitXY"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:loadImage="@{homeVM.randomMovie.poster}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -262,9 +264,24 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutMovie"
                     android:layout_width="match_parent"
-                    android:nestedScrollingEnabled="false"
                     android:layout_height="wrap_content"
+                    android:descendantFocusability="blocksDescendants"
+                    android:focusableInTouchMode="true"
+                    android:nestedScrollingEnabled="false"
                     app:layout_constraintTop_toBottomOf="@id/layoutPopularMovie">
+
+                    <TextView
+                        android:id="@+id/textAction"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_8"
+                        android:fontFamily="@font/bold"
+                        android:text="Phim hành động"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerMovie1"
@@ -272,54 +289,107 @@
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
                         android:orientation="horizontal"
-                        app:data="@{homeVM.movies}"
+                        app:data="@{homeVM.actionMovies}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textAction"
                         tools:listitem="@layout/item_movie" />
+
+                    <TextView
+                        android:id="@+id/textFantasy"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_8"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/bold"
+                        android:text="Phim giả tưởng"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerMovie1" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerMovie2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_4"
                         android:nestedScrollingEnabled="false"
                         android:orientation="horizontal"
-                        app:data="@{homeVM.movies}"
+                        app:data="@{homeVM.fantasyMovies}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/recyclerMovie1"
+                        app:layout_constraintTop_toBottomOf="@id/textFantasy"
                         tools:listitem="@layout/item_movie" />
+
+                    <TextView
+                        android:id="@+id/textAnimation"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_8"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/bold"
+                        android:text="Phim hoạt hình"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerMovie2" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerMovie3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_4"
                         android:nestedScrollingEnabled="false"
                         android:orientation="horizontal"
-                        app:data="@{homeVM.movies}"
+                        app:data="@{homeVM.animationMovies}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/recyclerMovie2"
+                        app:layout_constraintTop_toBottomOf="@id/textAnimation"
                         tools:listitem="@layout/item_movie" />
+
+                    <TextView
+                        android:id="@+id/textFamily"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_8"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/bold"
+                        android:text="Phim gia đình"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerMovie3" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerMovie4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_4"
                         android:nestedScrollingEnabled="false"
                         android:orientation="horizontal"
-                        app:data="@{homeVM.movies}"
+                        app:data="@{homeVM.familyMovies}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/recyclerMovie3"
+                        app:layout_constraintTop_toBottomOf="@id/textFamily"
                         tools:listitem="@layout/item_movie" />
+
+                    <TextView
+                        android:id="@+id/textHorror"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_8"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/bold"
+                        android:text="Phim kinh dị"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerMovie4" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerMovie5"
@@ -328,11 +398,11 @@
                         android:layout_marginTop="@dimen/dp_4"
                         android:nestedScrollingEnabled="false"
                         android:orientation="horizontal"
-                        app:data="@{homeVM.movies}"
+                        app:data="@{homeVM.horrorMovies}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/recyclerMovie4"
+                        app:layout_constraintTop_toBottomOf="@id/textHorror"
                         tools:listitem="@layout/item_movie" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

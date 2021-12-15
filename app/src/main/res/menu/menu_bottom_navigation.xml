@@ -7,8 +7,8 @@
 
     <item
         android:id="@+id/incomeFragment"
-        android:icon="@drawable/ic_income"
-        android:title="@string/title_income" />
+        android:icon="@drawable/ic_favorite"
+        android:title="Yêu thích" />
 
     <item
         android:id="@+id/searchFragment"

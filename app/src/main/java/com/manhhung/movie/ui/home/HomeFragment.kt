@@ -14,7 +14,11 @@ import com.manhhung.movie.ui.adapter.MovieAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-    private val adapter = MovieAdapter(::onItemClick)
+    private val actionAdapter = MovieAdapter(::onItemClick)
+    private val fantasyAdapter = MovieAdapter(::onItemClick)
+    private val animationAdapter = MovieAdapter(::onItemClick)
+    private val horrorAdapter = MovieAdapter(::onItemClick)
+    private val familyAdapter = MovieAdapter(::onItemClick)
     override val layoutId = R.layout.fragment_home
     override val viewModel by viewModel<HomeViewModel>()
 
@@ -42,11 +46,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             homeVM = viewModel
-            recyclerMovie1.adapter = adapter
-            recyclerMovie2.adapter = adapter
-            recyclerMovie3.adapter = adapter
-            recyclerMovie4.adapter = adapter
-            recyclerMovie5.adapter = adapter
+            recyclerMovie1.adapter = actionAdapter
+            recyclerMovie2.adapter = fantasyAdapter
+            recyclerMovie3.adapter = animationAdapter
+            recyclerMovie4.adapter = familyAdapter
+            recyclerMovie5.adapter = horrorAdapter
         }
     }
 
@@ -61,7 +65,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun onItemClick(movie: Movie) {
         val action =
-            HomeFragmentDirections.actionHomeFragmentToBaseBottomSheetDialogFragment(movie.id)
+            HomeFragmentDirections.actionHomeFragmentToMovieDetailDialog(movie.id)
         findNavController().navigate(action)
     }
 
