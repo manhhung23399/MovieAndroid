@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.manhhung.movie.data.model.Movie" />
+    </data>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageMovie"
+        android:layout_width="130dp"
+        android:layout_marginTop="8dp"
+        android:layout_height="160dp"
+        android:contentDescription="@null"
+        android:outlineProvider="background"
+        android:scaleType="fitXY"
+        app:loadImage="@{movie.poster}"
+        app:shapeAppearanceOverlay="@style/image_corner"
+        tool:src="@tools:sample/avatars" />
+</layout>
+

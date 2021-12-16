@@ -69,8 +69,10 @@
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedDetail"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@color/black"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/playSample">
@@ -103,6 +105,142 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textName" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerGenres"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:data="@{movieDetailVM.movieDetail.genres}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDescription"
+                    tool:listitem="@layout/item_genres" />
+
+                <ImageView
+                    android:id="@+id/imageSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_12"
+                    android:src="@{movieDetailVM.isFavorite() ? @drawable/ic_check :@drawable/ic_add}"
+                    app:layout_constraintEnd_toStartOf="@id/imageReview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerGenres" />
+
+                <TextView
+                    android:id="@+id/textFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:text="Danh sách"
+                    android:textColor="@color/color_gray_light"
+                    app:layout_constraintEnd_toEndOf="@id/imageSave"
+                    app:layout_constraintStart_toStartOf="@id/imageSave"
+                    app:layout_constraintTop_toBottomOf="@id/imageSave" />
+
+                <ImageView
+                    android:id="@+id/imageReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_12"
+                    android:src="@drawable/ic_rate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imageSave"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerGenres" />
+
+                <TextView
+                    android:id="@+id/textReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:text="Đánh giá"
+                    android:textColor="@color/color_gray_light"
+                    app:layout_constraintEnd_toEndOf="@id/imageReview"
+                    app:layout_constraintStart_toStartOf="@id/imageReview"
+                    app:layout_constraintTop_toBottomOf="@id/imageReview" />
+
+                <TextView
+                    android:id="@+id/textCast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:fontFamily="@font/bold"
+                    android:text="Diễn viên"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textFavorite" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCast"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:data="@{movieDetailVM.movieDetail.casts}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textCast"
+                    tool:listitem="@layout/item_cast" />
+
+                <TextView
+                    android:id="@+id/textCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:fontFamily="@font/bold"
+                    android:text="Nhà sản xuất"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerCast" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCompany"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:data="@{movieDetailVM.movieDetail.companies}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textCompany"
+                    tool:listitem="@layout/item_company" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabHome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerCompany"
+                    app:tabIndicatorColor="#FD3434"
+                    app:tabIndicatorHeight="3dp"
+                    app:tabSelectedTextColor="#FD3434"
+                    app:tabTextAppearance="@style/tab_text"
+                    app:tabTextColor="@color/color_gray">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Bình luận" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Nội dung tương tự" />
+
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPagerHome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tabHome" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 

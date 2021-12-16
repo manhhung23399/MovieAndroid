@@ -164,7 +164,7 @@
                             android:layout_marginTop="12dp"
                             android:ellipsize="end"
                             android:maxLines="2"
-                            android:text="Action • Explosive • Suspenseful"
+                            android:text="Hành động • Giật gân • Gay cấn"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp_14" />
 
@@ -357,7 +357,7 @@
                         android:layout_marginHorizontal="@dimen/dp_8"
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/bold"
-                        android:text="Phim gia đình"
+                        android:text="Phim hài"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_16"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -65,7 +65,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun onItemClick(movie: Movie) {
         val action =
-            HomeFragmentDirections.actionHomeFragmentToMovieDetailDialog(movie.id)
+            HomeFragmentDirections.actionHomeFragmentToMovieDetailDialog(movie)
         findNavController().navigate(action)
     }
 

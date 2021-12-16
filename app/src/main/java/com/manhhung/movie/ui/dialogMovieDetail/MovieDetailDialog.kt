@@ -29,7 +29,7 @@ class MovieDetailDialog : BaseBottomSheetDialogFragment<DialogMovieDetailBinding
             lifecycleOwner = viewLifecycleOwner
             movieDetailDialogVM = viewModel
         }
-        viewModel.getMovieDetail(args.movieId)
+        viewModel.getMovieDetail(args.movie.id)
     }
 
     override fun setupActions() {
@@ -39,7 +39,7 @@ class MovieDetailDialog : BaseBottomSheetDialogFragment<DialogMovieDetailBinding
             }
             buttonDetail.setOnClickListener {
                 val action =
-                    MovieDetailDialogDirections.actionMovieDetailDialogToMovieDetailFragment(args.movieId)
+                    MovieDetailDialogDirections.actionMovieDetailDialogToMovieDetailFragment(args.movie)
                 findNavController().navigate(action)
             }
         }

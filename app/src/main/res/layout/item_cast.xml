@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cast"
+            type="com.manhhung.movie.data.model.Cast" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageAvatar"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@null"
+            android:outlineProvider="background"
+            android:scaleType="fitXY"
+            app:loadImage="@{cast.avatar}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/image_corner"
+            tool:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:text="@{cast.name}"
+            android:textColor="@color/color_gray_light"
+            app:layout_constraintEnd_toEndOf="@id/imageAvatar"
+            app:layout_constraintStart_toStartOf="@id/imageAvatar"
+            app:layout_constraintTop_toBottomOf="@id/imageAvatar"
+            tool:text="@tools:sample/lorem" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

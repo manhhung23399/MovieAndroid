@@ -8,4 +8,8 @@ interface MovieRepository {
     suspend fun getMovieDetail(movieId: String): MovieDetail
     suspend fun getMovieByGenre(idGenre: String): List<Movie>
     suspend fun getRandomMovie(number: Int): List<Movie>
+    suspend fun getFavoriteMovie(): List<Movie>
+    suspend fun insertMovie(movie: Movie)
+    suspend fun deleteMovie(movie: Movie)
+    suspend fun isFavorite(id: String): Movie
 }

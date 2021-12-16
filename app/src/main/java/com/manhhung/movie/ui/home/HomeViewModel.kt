@@ -72,7 +72,7 @@ class HomeViewModel(
 
     private fun getFamilyMovies() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            val moviesFromApi = movieRepository.getMovieByGenre("Genres eq 10752")
+            val moviesFromApi = movieRepository.getMovieByGenre("Genres eq 35")
             _familyMovies.postValue(moviesFromApi)
         }
     }
