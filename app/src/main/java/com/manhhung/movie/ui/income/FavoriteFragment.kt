@@ -37,6 +37,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     }
 
     private fun onItemClick(movie: Movie) {
-
+        val action = FavoriteFragmentDirections.actionFavoriteFragmentToMovieDetailDialog(movie)
+        findNavController().navigate(action)
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -15,17 +15,24 @@
             app:destination="@id/movieDetailDialog"
             app:enterAnim="@android:anim/fade_in"
             app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_homeFragment_to_categoryDialogFragment"
+            app:destination="@id/categoryDialogFragment" />
     </fragment>
     <fragment
-        android:id="@+id/incomeFragment"
+        android:id="@+id/favoriteFragment"
         android:name="com.manhhung.movie.ui.income.FavoriteFragment"
-        android:label="IncomeFragment"
-        tools:layout="@layout/fragment_favorite" />
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoriteFragment_to_movieDetailDialog"
+            app:destination="@id/movieDetailDialog" />
+    </fragment>
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.manhhung.movie.ui.search.SearchFragment"
-        android:label="SearchFragment"
-        tools:layout="@layout/fragment_search" />
+        android:id="@+id/settingFragment"
+        android:name="com.manhhung.movie.ui.search.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting" />
     <dialog
         android:id="@+id/movieDetailDialog"
         android:name="com.manhhung.movie.ui.dialogMovieDetail.MovieDetailDialog"
@@ -52,6 +59,58 @@
         <argument
             android:name="movie"
             app:argType="com.manhhung.movie.data.model.Movie" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_dialogExoFullscreen"
+            app:destination="@id/dialogExoFullscreen" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/categoryDialogFragment"
+        android:name="com.manhhung.movie.ui.dialogCategory.CategoryDialogFragment"
+        android:label="CategoryDialogFragment"
+        tools:layout="@layout/dialog_genres" />
+    <fragment
+        android:id="@+id/dialogExoFullscreen"
+        android:name="com.manhhung.movie.ui.movieDetail.DialogExoFullscreen"
+        android:label="DialogExoFullscreen"
+        tools:layout="@layout/dialog_full_screen">
+        <argument
+            android:name="url"
+            app:argType="string" />
+        <argument
+            android:name="position"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_dialogExoFullscreen_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <argument
+            android:name="movie"
+            app:argType="com.manhhung.movie.data.model.Movie" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.manhhung.movie.ui.account.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/nav_graph"/>
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.manhhung.movie.ui.account.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
 </navigation>

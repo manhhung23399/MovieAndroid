@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.manhhung.movie.base.BaseViewModel
+import com.manhhung.movie.data.model.Company
 import com.manhhung.movie.data.model.Movie
 import com.manhhung.movie.data.model.MovieDetail
 import com.manhhung.movie.data.repository.MovieRepository
@@ -20,6 +21,9 @@ class MovieDetailViewModel(
     private val _isFavorite = MutableLiveData<Boolean>()
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
+    private val _currentPosition = MutableLiveData<Long>()
+    val currentPosition: LiveData<Long>
+        get() = _currentPosition
 
     fun getMovieDetail(movieId: String) {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
@@ -45,5 +49,9 @@ class MovieDetailViewModel(
             val movieFavorite = movieRepository.isFavorite(id)
             _isFavorite.postValue(movieFavorite != null)
         }
+    }
+
+    fun setCurrentPosition(current: Long) {
+        _currentPosition.postValue(current)
     }
 }

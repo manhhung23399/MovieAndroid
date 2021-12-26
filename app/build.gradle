@@ -77,4 +77,9 @@ dependencies {
     kapt("androidx.room:room-compiler:2.3.0")
     implementation("androidx.room:room-ktx:2.3.0")
     implementation 'com.airbnb.android:lottie:4.2.0'
+    //Exo
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.16.1'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.16.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.16.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.16.1'
 }

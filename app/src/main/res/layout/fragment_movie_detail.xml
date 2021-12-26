@@ -56,12 +56,16 @@
                 tool:src="@tools:sample/avatars" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/playSample"
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/playVideo"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
+            app:resize_mode="fill"
+            app:hide_on_touch="true"
+            app:show_timeout="5000"
+            app:use_controller="true"
+            android:background="@color/black"
+            app:controller_layout_id="@layout/custom_controller"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -75,7 +79,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/playSample">
+            app:layout_constraintTop_toBottomOf="@id/playVideo">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

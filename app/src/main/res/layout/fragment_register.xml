@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <TextView
+            android:id="@+id/textLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/black"
+            android:gravity="center"
+            android:text="Moview"
+            android:textColor="#F81717"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@id/editEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_round_local_movies_24"
+            app:layout_constraintEnd_toStartOf="@id/textLogo"
+            app:layout_constraintTop_toTopOf="@id/textLogo" />
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:background="@drawable/bg_edittext_corner"
+            android:fontFamily="@font/regular"
+            android:hint="Email"
+            android:paddingHorizontal="8dp"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editPass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_16"
+            android:background="@drawable/bg_edittext_corner"
+            android:fontFamily="@font/regular"
+            android:hint="Mật khẩu"
+            android:paddingHorizontal="8dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editEmail" />
+
+        <EditText
+            android:id="@+id/editRePass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_16"
+            android:background="@drawable/bg_edittext_corner"
+            android:fontFamily="@font/regular"
+            android:hint="Nhập lại mật khẩu"
+            android:paddingHorizontal="8dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editPass" />
+        <EditText
+            android:id="@+id/editUserName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_16"
+            android:background="@drawable/bg_edittext_corner"
+            android:fontFamily="@font/regular"
+            android:hint="Tên tài khoản"
+            android:paddingHorizontal="8dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editRePass" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonRegister"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_button_corner"
+            android:backgroundTint="@color/color_gray"
+            android:fontFamily="@font/bold"
+            android:text="Đăng ký"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/editUserName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

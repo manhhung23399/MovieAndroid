@@ -13,7 +13,12 @@ class HomeViewModel(
     private val movieRepository: MovieRepository
 ) : BaseViewModel() {
 
-
+    private val _randomMovie = MutableLiveData<Movie>()
+    val randomMovie: LiveData<Movie>
+        get() = _randomMovie
+    private val _isFavorite = MutableLiveData<Boolean>()
+    val isFavorite: LiveData<Boolean>
+        get() = _isFavorite
     private val _actionMovies = MutableLiveData<List<Movie>>()
     val actionMovies: LiveData<List<Movie>>
         get() = _actionMovies
@@ -29,9 +34,6 @@ class HomeViewModel(
     private val _horrorMovies = MutableLiveData<List<Movie>>()
     val horrorMovies: LiveData<List<Movie>>
         get() = _horrorMovies
-    private val _randomMovie = MutableLiveData<Movie>()
-    val randomMovie: LiveData<Movie>
-        get() = _randomMovie
 
     init {
         getRandomMovie()
@@ -42,41 +44,6 @@ class HomeViewModel(
         getAnimationMovies()
     }
 
-    private fun getActionMovies() {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            val moviesFromApi = movieRepository.getMovieByGenre("Genres eq 28")
-            _actionMovies.postValue(moviesFromApi)
-        }
-    }
-
-    private fun getFantasyMovies() {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            val moviesFromApi = movieRepository.getMovieByGenre("Genres eq 14")
-            _fantasyMovies.postValue(moviesFromApi)
-        }
-    }
-
-    private fun getAnimationMovies() {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            val moviesFromApi = movieRepository.getMovieByGenre("Genres eq 16")
-            _animationMovies.postValue(moviesFromApi)
-        }
-    }
-
-    private fun getHorrorMovies() {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            val moviesFromApi = movieRepository.getMovieByGenre("Genres eq 27")
-            _horrorMovies.postValue(moviesFromApi)
-        }
-    }
-
-    private fun getFamilyMovies() {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            val moviesFromApi = movieRepository.getMovieByGenre("Genres eq 35")
-            _familyMovies.postValue(moviesFromApi)
-        }
-    }
-
     private fun getRandomMovie() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val movieFromApi = movieRepository.getRandomMovie(1)
@@ -84,4 +51,57 @@ class HomeViewModel(
         }
     }
 
+    private fun getActionMovies() {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+28","Popularity+desc")
+            _actionMovies.postValue(moviesFromApi)
+        }
+    }
+
+    private fun getFantasyMovies() {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+10749","Popularity+desc")
+            _fantasyMovies.postValue(moviesFromApi)
+        }
+    }
+
+    private fun getAnimationMovies() {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+16","Popularity+desc")
+            _animationMovies.postValue(moviesFromApi)
+        }
+    }
+
+    private fun getHorrorMovies() {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+27","Popularity+desc")
+            _horrorMovies.postValue(moviesFromApi)
+        }
+    }
+
+    private fun getFamilyMovies() {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+35","Popularity+desc")
+            _familyMovies.postValue(moviesFromApi)
+        }
+    }
+
+    fun insertMovie(movie: Movie) {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            if (isFavorite.value == true) {
+                movieRepository.deleteMovie(movie)
+                _isFavorite.postValue(false)
+            } else {
+                movieRepository.insertMovie(movie)
+                _isFavorite.postValue(true)
+            }
+        }
+    }
+
+    fun checkFavorite(id: String) {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            val movieFavorite = movieRepository.isFavorite(id)
+            _isFavorite.postValue(movieFavorite != null)
+        }
+    }
 }

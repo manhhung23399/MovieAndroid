@@ -11,3 +11,4 @@ fun <T> setDataRecycler(recyclerView: RecyclerView, data: List<T>?) {
         (recyclerView.adapter as BindDataAdapter<T>).setData(data)
     }
 }
+

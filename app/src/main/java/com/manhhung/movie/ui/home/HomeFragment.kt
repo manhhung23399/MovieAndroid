@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.AppBarLayout
 import com.manhhung.movie.R
@@ -40,6 +41,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
         }
+        viewModel.apply {
+            randomMovie.observe(viewLifecycleOwner, {
+                checkFavorite(it.id)
+            })
+        }
     }
 
     override fun initData() {
@@ -52,6 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             recyclerMovie4.adapter = familyAdapter
             recyclerMovie5.adapter = horrorAdapter
         }
+
     }
 
     override fun initActions() {
@@ -59,8 +66,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             textMovie.setOnClickListener {
                 Toast.makeText(context, "ajkshdlfkjha", Toast.LENGTH_LONG).show()
             }
+            addToListButton.setOnClickListener {
+                viewModel.randomMovie.value?.let { it1 -> viewModel.insertMovie(it1) }
+            }
+            infoButton.setOnClickListener {
+                val action = viewModel.randomMovie.value?.let { it1 ->
+                    HomeFragmentDirections.actionHomeFragmentToMovieDetailDialog(
+                        it1
+                    )
+                }
+                if (action != null) {
+                    findNavController().navigate(action)
+                }
+            }
+            textCategory.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToCategoryDialogFragment()
+                findNavController().navigate(action)
+            }
         }
-
     }
 
     private fun onItemClick(movie: Movie) {

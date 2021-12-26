@@ -22,17 +22,19 @@
             android:contentDescription="@null"
             android:outlineProvider="background"
             android:scaleType="fitXY"
-            app:loadImage="@{cast.avatar}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{cast.avatar}"
             app:shapeAppearanceOverlay="@style/image_corner"
             tool:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/textName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/regular"
+            android:gravity="center"
+            android:minLines="2"
             android:text="@{cast.name}"
             android:textColor="@color/color_gray_light"
             app:layout_constraintEnd_toEndOf="@id/imageAvatar"

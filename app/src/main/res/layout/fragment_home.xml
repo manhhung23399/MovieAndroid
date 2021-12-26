@@ -53,19 +53,8 @@
                     android:padding="8dp"
                     android:src="@drawable/ic_search"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/imageProfile"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageProfile"
-                    android:layout_width="@dimen/dp_32"
-                    android:layout_height="@dimen/dp_32"
-                    android:layout_margin="@dimen/dp_8"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/image_corner"
-                    tools:src="@tools:sample/avatars" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -157,17 +146,6 @@
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="@id/imagePopular">
 
-                        <TextView
-                            android:id="@+id/genres_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:ellipsize="end"
-                            android:maxLines="2"
-                            android:text="Hành động • Giật gân • Gay cấn"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp_14" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -189,7 +167,7 @@
                                 <ImageView
                                     android:layout_width="24dp"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_add"
+                                    android:src="@{homeVM.isFavorite() ? @drawable/ic_check :@drawable/ic_add}"
                                     app:tint="@color/white" />
 
                                 <TextView
@@ -303,7 +281,7 @@
                         android:layout_marginHorizontal="@dimen/dp_8"
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/bold"
-                        android:text="Phim giả tưởng"
+                        android:text="Phim tình cảm"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_16"
                         app:layout_constraintEnd_toEndOf="parent"

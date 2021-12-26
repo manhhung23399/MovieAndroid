@@ -20,5 +20,7 @@ data class MovieDetail(
     @SerializedName("genres")
     val genres: List<Genre>,
     @SerializedName("companies")
-    val companies: List<Company>
+    val companies: List<Company>,
+    @SerializedName("sources")
+    val sources: List<Source>
 )

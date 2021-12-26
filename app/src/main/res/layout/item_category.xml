@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="genre"
+            type="com.manhhung.movie.data.model.Genre" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:text="@{genre.name}"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_marginTop="12dp"
+        tool:text="@tools:sample/lorem"
+        android:gravity="center"/>
+</layout>
