@@ -47,42 +47,42 @@ class HomeViewModel(
     private fun getRandomMovie() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val movieFromApi = movieRepository.getRandomMovie(1)
-            _randomMovie.postValue(movieFromApi[0])
+            _randomMovie.postValue(movieFromApi.data[0])
         }
     }
 
     private fun getActionMovies() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+28","Popularity+desc")
-            _actionMovies.postValue(moviesFromApi)
+            _actionMovies.postValue(moviesFromApi.data)
         }
     }
 
     private fun getFantasyMovies() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+10749","Popularity+desc")
-            _fantasyMovies.postValue(moviesFromApi)
+            _fantasyMovies.postValue(moviesFromApi.data)
         }
     }
 
     private fun getAnimationMovies() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+16","Popularity+desc")
-            _animationMovies.postValue(moviesFromApi)
+            _animationMovies.postValue(moviesFromApi.data)
         }
     }
 
     private fun getHorrorMovies() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+27","Popularity+desc")
-            _horrorMovies.postValue(moviesFromApi)
+            _horrorMovies.postValue(moviesFromApi.data)
         }
     }
 
     private fun getFamilyMovies() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val moviesFromApi = movieRepository.getMovieByGenre("Genres+eq+35","Popularity+desc")
-            _familyMovies.postValue(moviesFromApi)
+            _familyMovies.postValue(moviesFromApi.data)
         }
     }
 

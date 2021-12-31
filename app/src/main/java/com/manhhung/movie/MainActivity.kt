@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.dialogExoFullscreen -> binding.bottomNavigation.visibility = View.GONE
+                R.id.loginFragment -> binding.bottomNavigation.visibility = View.GONE
+                R.id.registerFragment -> binding.bottomNavigation.visibility = View.GONE
                 else -> binding.bottomNavigation.visibility = View.VISIBLE
             }
         }

@@ -10,5 +10,7 @@ data class AccountResponse(
     @SerializedName("userId")
     val userId: String,
     @SerializedName("token")
-    val token: String
+    val token: String,
+    @SerializedName("refreshToken")
+    val refreshToken: String
 )

@@ -28,7 +28,7 @@ class MovieDetailViewModel(
     fun getMovieDetail(movieId: String) {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val movieDetailFromApi = movieRepository.getMovieDetail(movieId)
-            _movieDetail.postValue(movieDetailFromApi)
+            _movieDetail.postValue(movieDetailFromApi.data)
         }
     }
 

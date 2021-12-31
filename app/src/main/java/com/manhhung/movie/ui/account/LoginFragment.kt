@@ -29,7 +29,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     findNavController().navigate(action)
                 } else {
                     account.observe(viewLifecycleOwner, {
-                        context?.showToast(it.toString())
+                        context?.showToast(it.message)
                     })
                 }
             })

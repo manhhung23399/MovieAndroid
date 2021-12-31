@@ -23,7 +23,7 @@ class CategoryViewModel(
     private fun getGenres() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val genresFromApi = categoryRepository.getGenres()
-            _genres.postValue(genresFromApi)
+            _genres.postValue(genresFromApi.data)
         }
     }
 }

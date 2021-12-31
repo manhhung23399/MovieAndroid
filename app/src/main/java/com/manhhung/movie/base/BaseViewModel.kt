@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.net.UnknownHostException
 
 open class BaseViewModel : ViewModel() {
@@ -20,7 +21,10 @@ open class BaseViewModel : ViewModel() {
     protected val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         when (throwable) {
             is UnknownHostException -> viewModelScope.launch {
-                _errorMessage.value = "CHECK YOUR INTERNET CONNECTION!!!"
+                _errorMessage.value = "Kiểm tra lại kêt nối mạng!"
+            }
+            is HttpException-> viewModelScope.launch {
+                _errorMessage.value = "Kiểm tra lại thông tin đăng nhập!"
             }
             else -> viewModelScope.launch {_errorMessage.value = throwable.message}
         }
