@@ -9,14 +9,9 @@ import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.manhhung.movie.R
 import com.manhhung.movie.base.BaseFragment
-import com.manhhung.movie.data.model.Cast
-import com.manhhung.movie.data.model.Company
-import com.manhhung.movie.data.model.Genre
-import com.manhhung.movie.data.model.MovieDetail
+import com.manhhung.movie.data.model.*
 import com.manhhung.movie.databinding.FragmentMovieDetailBinding
-import com.manhhung.movie.ui.adapter.CastAdapter
-import com.manhhung.movie.ui.adapter.CompanyAdapter
-import com.manhhung.movie.ui.adapter.GenresAdapter
+import com.manhhung.movie.ui.adapter.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
@@ -26,6 +21,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
     private val castAdapter = CastAdapter(::onCastClick)
     private val companyAdapter = CompanyAdapter(::onCompanyClick)
     private val genresAdapter = GenresAdapter(::onGenresClick)
+    private val recommendAdapter = RecommendAdapter(::onRecommendClick)
     private var playWhenReady = true
     private var currentWindow = 0
     private var playbackPosition = 0L
@@ -34,22 +30,35 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
     private val args: MovieDetailFragmentArgs by navArgs()
 
     override fun initViews() {
-
     }
 
     override fun initData() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             movieDetailVM = viewModel
-            recyclerCast.adapter = castAdapter
-            recyclerCompany.adapter = companyAdapter
-            recyclerGenres.adapter = genresAdapter
+            recyclerCast.apply {
+                setHasFixedSize(true)
+                adapter = castAdapter
+            }
+            recyclerCompany.apply {
+                setHasFixedSize(true)
+                adapter = companyAdapter
+            }
+            recyclerGenres.apply {
+                setHasFixedSize(true)
+                adapter = genresAdapter
+            }
+            recyclerRecommend.apply {
+                setHasFixedSize(true)
+                adapter = recommendAdapter
+            }
         }
         viewModel.apply {
             getMovieDetail(args.movie.id)
             checkFavorite(args.movie.id)
-            movieDetail.observe(viewLifecycleOwner,{
+            movieDetail.observe(viewLifecycleOwner, {
                 movieDetailTemp = it
+                getRecommends(it.genres[0].id)
             })
         }
     }
@@ -85,6 +94,11 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
                     }
                 }
             }
+            imageSearch.setOnClickListener {
+                val action =
+                    MovieDetailFragmentDirections.actionMovieDetailFragmentToSearchFragment()
+                findNavController().navigate(action)
+            }
         }
         onBackPressed()
     }
@@ -100,14 +114,28 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
     }
 
     private fun onCastClick(cast: Cast) {
+        val action =
+            MovieDetailFragmentDirections.actionMovieDetailFragmentToCastDetailFragment(cast.id)
+        findNavController().navigate(action)
 
     }
 
     private fun onCompanyClick(company: Company) {
+        val action =
+            MovieDetailFragmentDirections.actionMovieDetailFragmentToCompanyDetailFragment(company.id)
+        findNavController().navigate(action)
 
     }
 
     private fun onGenresClick(genres: Genre) {
+        val action =
+            MovieDetailFragmentDirections.actionMovieDetailFragmentToMovieGenreFragment(genres)
+        findNavController().navigate(action)
+    }
+
+    private fun onRecommendClick(movie: Movie) {
+        val action = MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(movie)
+        findNavController().navigate(action)
 
     }
 

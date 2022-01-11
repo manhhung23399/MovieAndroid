@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="companyDetailVM"
+            type="com.manhhung.movie.ui.companyDetail.CompanyDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/imageBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/viewBg"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:background="@drawable/bg_view_corner"
+            app:layout_constraintStart_toStartOf="@id/imageLogo"
+            app:layout_constraintTop_toTopOf="@id/imageLogo" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageBack"
+            app:loadImage="@{companyDetailVM.companyDetail.logo}"
+            tool:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:fontFamily="@font/medium"
+            android:text="@{companyDetailVM.companyDetail.name}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/imageLogo"
+            app:layout_constraintTop_toTopOf="@id/imageLogo"
+            tool:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/textHomePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:fontFamily="@font/medium"
+            android:text="@{companyDetailVM.companyDetail.homePage}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/imageLogo"
+            app:layout_constraintTop_toBottomOf="@id/textName"
+            tool:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/textHeadQuarter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:fontFamily="@font/medium"
+            android:text="@{companyDetailVM.companyDetail.headQuarter}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/imageLogo"
+            app:layout_constraintTop_toBottomOf="@id/textHomePage"
+            tool:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/textCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:fontFamily="@font/medium"
+            android:text="@{companyDetailVM.companyDetail.country}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/imageLogo"
+            app:layout_constraintTop_toBottomOf="@id/textHeadQuarter"
+            tool:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/textKnowFor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/medium"
+            android:text="Đã sản xuất"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageLogo" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMovie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            app:data="@{companyDetailVM.movies}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textKnowFor"
+            tool:listitem="@layout/item_movie" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -23,9 +23,6 @@ open class BaseViewModel : ViewModel() {
             is UnknownHostException -> viewModelScope.launch {
                 _errorMessage.value = "Kiểm tra lại kêt nối mạng!"
             }
-            is HttpException-> viewModelScope.launch {
-                _errorMessage.value = "Kiểm tra lại thông tin đăng nhập!"
-            }
             else -> viewModelScope.launch {_errorMessage.value = throwable.message}
         }
 

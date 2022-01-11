@@ -1,4 +1,4 @@
-package com.manhhung.movie.ui.search
+package com.manhhung.movie.ui.setting
 
 import com.manhhung.movie.R
 import com.manhhung.movie.base.BaseFragment

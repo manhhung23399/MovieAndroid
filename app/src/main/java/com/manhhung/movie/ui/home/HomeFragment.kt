@@ -1,20 +1,19 @@
 package com.manhhung.movie.ui.home
 
+
 import android.graphics.Color
-import android.util.Log
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.appbar.AppBarLayout
 import com.manhhung.movie.R
 import com.manhhung.movie.base.BaseFragment
 import com.manhhung.movie.data.model.Movie
 import com.manhhung.movie.databinding.FragmentHomeBinding
 import com.manhhung.movie.ui.adapter.MovieAdapter
+import com.manhhung.movie.utils.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+
     private val actionAdapter = MovieAdapter(::onItemClick)
     private val fantasyAdapter = MovieAdapter(::onItemClick)
     private val animationAdapter = MovieAdapter(::onItemClick)
@@ -64,7 +63,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun initActions() {
         binding?.apply {
             textMovie.setOnClickListener {
-                Toast.makeText(context, "ajkshdlfkjha", Toast.LENGTH_LONG).show()
+            }
+            textTvShow.setOnClickListener {
+                context?.showToast("Hiện ứng dụng chưa hỗ trợ phim bộ")
             }
             addToListButton.setOnClickListener {
                 viewModel.randomMovie.value?.let { it1 -> viewModel.insertMovie(it1) }
@@ -81,6 +82,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
             textCategory.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeFragmentToCategoryDialogFragment()
+                findNavController().navigate(action)
+            }
+            playButton.setOnClickListener {
+                val action = viewModel.randomMovie.value?.let { it1 ->
+                    HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(
+                        it1
+                    )
+                }
+                if (action != null) {
+                    findNavController().navigate(action)
+                }
+            }
+            imageSearch.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
                 findNavController().navigate(action)
             }
         }

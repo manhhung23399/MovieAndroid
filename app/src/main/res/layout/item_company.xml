@@ -38,10 +38,13 @@
 
         <TextView
             android:id="@+id/textName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:fontFamily="@font/regular"
+            android:maxLines="1"
             android:text="@{company.name}"
+            android:gravity="center"
             android:textColor="@color/color_gray_light"
             app:layout_constraintEnd_toEndOf="@id/imageAvatar"
             app:layout_constraintStart_toStartOf="@id/imageAvatar"

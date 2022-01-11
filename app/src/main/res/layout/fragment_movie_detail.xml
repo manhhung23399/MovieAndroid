@@ -41,34 +41,24 @@
                 android:padding="8dp"
                 android:src="@drawable/ic_search"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/imageProfile"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageProfile"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/image_corner"
-                tool:src="@tools:sample/avatars" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/playVideo"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            app:resize_mode="fill"
-            app:hide_on_touch="true"
-            app:show_timeout="5000"
-            app:use_controller="true"
             android:background="@color/black"
             app:controller_layout_id="@layout/custom_controller"
+            app:hide_on_touch="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:resize_mode="fill"
+            app:show_timeout="5000"
+            app:use_controller="true" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedDetail"
@@ -149,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp_12"
-                    android:src="@drawable/ic_rate"
+                    android:src="@drawable/ic_round_star_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/imageSave"
                     app:layout_constraintTop_toBottomOf="@id/recyclerGenres" />
@@ -159,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/regular"
-                    android:text="Đánh giá"
+                    android:text="@{String.valueOf(movieDetailVM.movieDetail.vote)}"
                     android:textColor="@color/color_gray_light"
                     app:layout_constraintEnd_toEndOf="@id/imageReview"
                     app:layout_constraintStart_toStartOf="@id/imageReview"
@@ -211,40 +201,29 @@
                     app:layout_constraintTop_toBottomOf="@id/textCompany"
                     tool:listitem="@layout/item_company" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabHome"
+                <TextView
+                    android:id="@+id/textRecommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:fontFamily="@font/bold"
+                    android:text="Nội dung tương tự"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerCompany" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerRecommend"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
+                    android:orientation="horizontal"
+                    app:data="@{movieDetailVM.recommends}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/recyclerCompany"
-                    app:tabIndicatorColor="#FD3434"
-                    app:tabIndicatorHeight="3dp"
-                    app:tabSelectedTextColor="#FD3434"
-                    app:tabTextAppearance="@style/tab_text"
-                    app:tabTextColor="@color/color_gray">
+                    app:layout_constraintTop_toBottomOf="@id/textRecommend"
+                    tool:listitem="@layout/item_company" />
 
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Bình luận" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Nội dung tương tự" />
-
-                </com.google.android.material.tabs.TabLayout>
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/viewPagerHome"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:overScrollMode="never"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tabHome" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 

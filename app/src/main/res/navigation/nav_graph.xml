@@ -18,6 +18,12 @@
         <action
             android:id="@+id/action_homeFragment_to_categoryDialogFragment"
             app:destination="@id/categoryDialogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -30,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.manhhung.movie.ui.search.SettingFragment"
+        android:name="com.manhhung.movie.ui.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting" />
     <dialog
@@ -65,12 +71,31 @@
         <action
             android:id="@+id/action_movieDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_castDetailFragment"
+            app:destination="@id/castDetailFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_self"
+            app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_companyDetailFragment"
+            app:destination="@id/companyDetailFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_movieGenreFragment"
+            app:destination="@id/movieGenreFragment" />
     </fragment>
     <dialog
         android:id="@+id/categoryDialogFragment"
         android:name="com.manhhung.movie.ui.dialogCategory.CategoryDialogFragment"
         android:label="CategoryDialogFragment"
-        tools:layout="@layout/dialog_genres" />
+        tools:layout="@layout/dialog_genres" >
+        <action
+            android:id="@+id/action_categoryDialogFragment_to_movieGenreFragment"
+            app:destination="@id/movieGenreFragment" />
+    </dialog>
     <fragment
         android:id="@+id/dialogExoFullscreen"
         android:name="com.manhhung.movie.ui.movieDetail.DialogExoFullscreen"
@@ -97,8 +122,8 @@
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/nav_graph"/>
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -111,6 +136,52 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.manhhung.movie.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/castDetailFragment"
+        android:name="com.manhhung.movie.ui.castDetail.CastDetailFragment"
+        android:label="CastDetailFragment"
+        tools:layout="@layout/fragment_cast_detail">
+        <argument
+            android:name="castId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_castDetailFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyDetailFragment"
+        android:name="com.manhhung.movie.ui.companyDetail.CompanyDetailFragment"
+        android:label="CompanyDetailFragment"
+        tools:layout="@layout/fragment_company_detail">
+        <argument
+            android:name="companyId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_companyDetailFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieGenreFragment"
+        android:name="com.manhhung.movie.ui.movieGenre.MovieGenreFragment"
+        android:label="MovieGenreFragment"
+        tools:layout="@layout/fragment_movie_genre" >
+
+        <action
+            android:id="@+id/action_movieGenreFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <argument
+            android:name="genre"
+            app:argType="com.manhhung.movie.data.model.Genre" />
     </fragment>
 
 </navigation>

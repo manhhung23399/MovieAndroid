@@ -1,5 +1,6 @@
 package com.manhhung.movie.ui.dialogCategory
 
+import androidx.navigation.fragment.findNavController
 import com.manhhung.movie.R
 import com.manhhung.movie.base.BaseDialogFragment
 import com.manhhung.movie.data.model.Genre
@@ -34,6 +35,8 @@ class CategoryDialogFragment : BaseDialogFragment<DialogGenresBinding>() {
     }
 
     private fun onItemClick(genre: Genre) {
-
+        val action =
+            CategoryDialogFragmentDirections.actionCategoryDialogFragmentToMovieGenreFragment(genre)
+        findNavController().navigate(action)
     }
 }

@@ -28,5 +28,23 @@ interface ApiService {
     suspend fun getGenres(): BaseResponse<List<Genre>>
 
     @POST("account")
-    suspend fun logIn(@Body account: Account): BaseResponse<AccountResponse>
+    suspend fun logIn(@Body account: Account): BaseResponse<Any>
+
+    @POST("account/register")
+    suspend fun register(@Body register: Register): BaseResponse<Any>
+
+    @GET("movie")
+    suspend fun getPopularMovie(
+        @Query("orderby") order: String
+    ): BaseResponse<List<Movie>>
+
+    @GET("cast/{castId}")
+    suspend fun getCastDetail(
+        @Path("castId") id: String
+    ): BaseResponse<CastDetail>
+
+    @GET("company/{companyId}")
+    suspend fun getCompanyDetail(
+        @Path("companyId") id: String
+    ): BaseResponse<CompanyDetail>
 }

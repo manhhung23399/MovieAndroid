@@ -1,11 +1,8 @@
 package com.manhhung.movie.data.repository
 
-import com.manhhung.movie.data.model.Account
-import com.manhhung.movie.data.model.AccountResponse
-import com.manhhung.movie.data.model.BaseResponse
-import com.manhhung.movie.data.model.Movie
-import retrofit2.Response
+import com.manhhung.movie.data.model.*
 
 interface AccountRepository {
-    suspend fun logIn(account: Account): BaseResponse<AccountResponse>
+    suspend fun logIn(account: Account): BaseResponse<Any>
+    suspend fun register(register: Register): BaseResponse<Any>
 }

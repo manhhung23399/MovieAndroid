@@ -62,6 +62,7 @@
             android:background="@drawable/bg_edittext_corner"
             android:fontFamily="@font/regular"
             android:hint="Mật khẩu"
+            android:inputType="textPassword"
             android:paddingHorizontal="8dp"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

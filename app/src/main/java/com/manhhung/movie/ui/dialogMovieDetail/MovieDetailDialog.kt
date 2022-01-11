@@ -42,6 +42,11 @@ class MovieDetailDialog : BaseBottomSheetDialogFragment<DialogMovieDetailBinding
                     MovieDetailDialogDirections.actionMovieDetailDialogToMovieDetailFragment(args.movie)
                 findNavController().navigate(action)
             }
+            buttonPlay.setOnClickListener {
+                val action =
+                    MovieDetailDialogDirections.actionMovieDetailDialogToMovieDetailFragment(args.movie)
+                findNavController().navigate(action)
+            }
         }
     }
 }

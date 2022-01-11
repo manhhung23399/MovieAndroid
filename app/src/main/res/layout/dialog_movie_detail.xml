@@ -85,7 +85,7 @@
             app:layout_constraintTop_toBottomOf="@id/textDescription">
 
             <LinearLayout
-                android:id="@+id/play_button"
+                android:id="@+id/buttonPlay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
