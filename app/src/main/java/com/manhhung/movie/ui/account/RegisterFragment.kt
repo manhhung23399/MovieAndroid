@@ -62,6 +62,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                     )
                 }
             }
+            imageBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 }

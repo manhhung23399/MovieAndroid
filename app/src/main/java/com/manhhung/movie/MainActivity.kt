@@ -1,9 +1,12 @@
 package com.manhhung.movie
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.manhhung.movie.databinding.ActivityMainBinding
@@ -45,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentNavHost) as NavHostFragment
         val navController = navHostFragment.navController
-        if (navController.currentDestination?.id == R.id.homeFragment||navController.currentDestination?.id == R.id.loginFragment) {
+        if (navController.currentDestination?.id == R.id.homeFragment || navController.currentDestination?.id == R.id.loginFragment) {
             showDialogExitApp()
         } else {
             super.onBackPressed()
